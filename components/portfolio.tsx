@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Reveal } from "@/components/reveal";
+import { PortfolioCarousel } from "@/components/carousel";
 import { contact } from "@/lib/site";
 
 export type Fact = { label: string; value: string };
@@ -44,13 +45,11 @@ export function GlobalFooter() {
           <strong>Wanderson Silva (Wan)</strong>
           <span>Product Designer</span>
         </div>
-
         <div className="figma-footer__links">
           <a href={contact.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a>
           <a href={contact.whatsapp} target="_blank" rel="noreferrer">WhatsApp ↗</a>
           <a href={contact.email}>E-mail ↗</a>
         </div>
-
         <div className="figma-footer__meta">
           <span>São Paulo, Brasil</span>
           <span>2026</span>
@@ -69,7 +68,6 @@ export function ProjectCard({
   description,
   desktopTags,
   mobileTags,
-  buttonLabel,
 }: {
   href: string;
   desktopImage: string;
@@ -79,27 +77,12 @@ export function ProjectCard({
   description: string;
   desktopTags: string[];
   mobileTags: string[];
-  buttonLabel: string;
 }) {
   return (
     <article className="home-project">
-      <Link href={href} className="home-project__image" aria-label={buttonLabel}>
-        <Image
-          className="desktop-only"
-          src={desktopImage}
-          alt=""
-          width={720}
-          height={720}
-          sizes="720px"
-        />
-        <Image
-          className="mobile-only"
-          src={mobileImage}
-          alt=""
-          width={342}
-          height={342}
-          sizes="342px"
-        />
+      <Link href={href} className="home-project__image" aria-label={"Ver case " + title}>
+        <Image className="desktop-only" src={desktopImage} alt="" width={720} height={720} sizes="720px" />
+        <Image className="mobile-only" src={mobileImage} alt="" width={342} height={342} sizes="342px" />
       </Link>
 
       <div className="home-project__copy">
@@ -115,11 +98,8 @@ export function ProjectCard({
           {mobileTags.map((tag) => <span key={tag}>{tag}</span>)}
         </div>
 
-        <Link href={href} className="figma-brand-button desktop-only">
-          Explorar projeto
-        </Link>
-        <Link href={href} className="home-project__mobile-link mobile-only">
-          {buttonLabel} →
+        <Link href={href} className="figma-brand-button">
+          Ver case
         </Link>
       </div>
     </article>
@@ -144,8 +124,8 @@ export function CaseHero({
   return (
     <section className="case-hero">
       <div className="case-hero__inner">
-        <Link href="/#projetos" className="figma-brand-button case-back">
-          Voltar para projetos
+        <Link href="/#projetos" className="case-back">
+          ← Voltar para projetos
         </Link>
 
         <div className="case-hero__composition">
@@ -161,60 +141,39 @@ export function CaseHero({
             </div>
           </Reveal>
 
-          <Reveal className="case-hero__media" delay={0.06}>
-            <Image
-              className="desktop-only"
-              src={desktopImage}
-              alt=""
-              width={672}
-              height={839}
-              priority
-              sizes="672px"
-            />
-            <Image
-              className="mobile-only"
-              src={mobileImage}
-              alt=""
-              width={342}
-              height={427}
-              priority
-              sizes="342px"
-            />
-          </Reveal>
+          <div className="case-hero__media">
+            <Image className="desktop-only" src={desktopImage} alt="" width={672} height={839} priority sizes="672px" />
+            <Image className="mobile-only" src={mobileImage} alt="" width={342} height={427} priority sizes="342px" />
+          </div>
         </div>
       </div>
     </section>
+  );
+}
+
+function FactCard({ item }: { item: Fact }) {
+  return (
+    <article className="quick-fact">
+      <p>{item.label}</p>
+      <strong>{item.value}</strong>
+    </article>
   );
 }
 
 export function QuickFacts({ items }: { items: Fact[] }) {
   return (
     <section className="quick-facts" aria-label="Visão rápida">
-      <p className="mobile-only quick-facts__mobile-title">VISÃO RÁPIDA</p>
-      <div className="quick-facts__viewport">
-        <div className="quick-facts__track">
-          {items.map((item) => (
-            <article className="quick-fact" key={item.label}>
-              <p>{item.label}</p>
-              <strong>{item.value}</strong>
-            </article>
-          ))}
-        </div>
+      <div className="quick-facts__desktop desktop-only">
+        {items.map((item) => <FactCard item={item} key={item.label} />)}
+      </div>
+
+      <div className="quick-facts__mobile mobile-only">
+        <p className="quick-facts__mobile-title">VISÃO RÁPIDA</p>
+        <PortfolioCarousel label="Visão rápida" slideClassName="quick-facts__mobile-slide">
+          {items.map((item) => <FactCard item={item} key={item.label} />)}
+        </PortfolioCarousel>
       </div>
     </section>
-  );
-}
-
-export function FlowRow({ items }: { items: string[] }) {
-  return (
-    <div className="figma-flow">
-      {items.map((item, index) => (
-        <div className="figma-flow__step" key={item}>
-          <span>{item}</span>
-          {index < items.length - 1 ? <b aria-hidden="true">→</b> : null}
-        </div>
-      ))}
-    </div>
   );
 }
 
@@ -228,26 +187,9 @@ export function DecisionRows({
       {rows.map((row) => (
         <Reveal className="decision-row" key={row.title}>
           <h3>{row.title}</h3>
-          <div>
-            {row.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
-          </div>
+          <div>{row.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div>
         </Reveal>
       ))}
-    </div>
-  );
-}
-
-export function BeforeAfter({
-  before,
-  after,
-}: {
-  before: string[];
-  after: string[];
-}) {
-  return (
-    <div className="before-after">
-      <JourneyColumn label="ANTES" items={before} />
-      <JourneyColumn label="DEPOIS" items={after} />
     </div>
   );
 }
@@ -259,9 +201,7 @@ function JourneyColumn({ label, items }: { label: string; items: string[] }) {
       <div className="journey-column__items">
         {items.map((item, index) => (
           <div className="journey-state" key={item}>
-            <span className={index === 2 || index === 3 || index === 4 ? "journey-state--emphasis" : ""}>
-              {item}
-            </span>
+            <span className={index === 2 || index === 3 || index === 4 ? "journey-state--emphasis" : ""}>{item}</span>
             {index < items.length - 1 ? <b aria-hidden="true">↓</b> : null}
           </div>
         ))}
@@ -270,13 +210,23 @@ function JourneyColumn({ label, items }: { label: string; items: string[] }) {
   );
 }
 
-export function MetricRow({
-  metrics,
-  green = true,
-}: {
-  metrics: Metric[];
-  green?: boolean;
-}) {
+export function BeforeAfter({ before, after }: { before: string[]; after: string[] }) {
+  return (
+    <>
+      <div className="before-after desktop-only">
+        <JourneyColumn label="ANTES" items={before} />
+        <JourneyColumn label="DEPOIS" items={after} />
+      </div>
+      <div className="before-after-mobile mobile-only">
+        <PortfolioCarousel label="Comparação antes e depois" slideClassName="before-after-mobile__slide">
+          {[<JourneyColumn label="ANTES" items={before} key="before" />, <JourneyColumn label="DEPOIS" items={after} key="after" />]}
+        </PortfolioCarousel>
+      </div>
+    </>
+  );
+}
+
+export function MetricRow({ metrics, green = true }: { metrics: Metric[]; green?: boolean }) {
   return (
     <div className={green ? "metric-row metric-row--green" : "metric-row"}>
       {metrics.map((metric) => (
@@ -294,20 +244,24 @@ export function NextCase({
   href,
   title,
   description,
-  signature,
 }: {
   href: string;
   title: string;
   description: string;
-  signature: string;
 }) {
   return (
     <section className="next-case">
       <div className="next-case__rule" />
-      <Link href={href} className="next-case__link">{title}</Link>
-      <p>{description}</p>
-      <div className="next-case__rule next-case__rule--bottom" />
-      <strong className="next-case__signature">{signature}</strong>
+      <p className="next-case__eyebrow">PRÓXIMO CASE</p>
+      <div className="next-case__row">
+        <div className="next-case__copy">
+          <h2>{title}</h2>
+          <p>{description}</p>
+          <Link href={href} className="figma-brand-button">Ver case</Link>
+        </div>
+        <Link href={href} className="next-case__arrow" aria-label={"Ver case " + title}>→</Link>
+      </div>
+      <div className="next-case__rule" />
     </section>
   );
 }

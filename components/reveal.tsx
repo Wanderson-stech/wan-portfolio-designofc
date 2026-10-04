@@ -7,7 +7,6 @@ export function Reveal({
   children,
   className,
   delay = 0,
-  amount = 0.16,
 }: {
   children: React.ReactNode;
   className?: string;
@@ -21,10 +20,10 @@ export function Reveal({
   return (
     <motion.div
       className={className}
-      initial={{ opacity: 0, y: motionTokens.revealDistance }}
+      initial={false}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount }}
-      transition={{ duration: motionTokens.duration.base, ease: motionTokens.ease, delay }}
+      viewport={{ once: true }}
+      transition={{ duration: motionTokens.duration.fast, ease: motionTokens.ease, delay }}
     >
       {children}
     </motion.div>

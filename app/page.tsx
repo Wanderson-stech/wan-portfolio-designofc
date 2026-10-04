@@ -7,7 +7,6 @@ export default function Home() {
   return (
     <>
       <PortfolioHeader />
-
       <main>
         <section className="home-hero">
           <Reveal className="home-hero__content">
@@ -39,9 +38,7 @@ export default function Home() {
               description="Tornando visíveis as mudanças de um pedido antes que elas se transformassem em surpresa na entrega."
               desktopTags={["Discovery", "Produto", "UX/UI"]}
               mobileTags={["Discovery", "Produto", "UX/UI"]}
-              buttonLabel="Explorar Ruptura Parcial"
             />
-
             <ProjectCard
               href="/reenvio"
               desktopImage="/figma/home-reenvio-desktop.png"
@@ -51,7 +48,6 @@ export default function Home() {
               description="Transformando uma falha de entrega em uma jornada que o próprio cliente consegue resolver."
               desktopTags={["Autoatendimento", "User Flow", "MVP", "App + Web"]}
               mobileTags={["Autoatendimento", "User Flow", "MVP", "App + Web"]}
-              buttonLabel="Explorar Reenvio automático"
             />
           </div>
         </section>
@@ -61,7 +57,6 @@ export default function Home() {
             <h2>Meu trabalho não começa na tela.</h2>
             <p>Antes de desenhar uma solução, tento entender o que está acontecendo entre usuário, produto, tecnologia e operação.</p>
           </Reveal>
-
           <div className="home-thinking__rows">
             {[
               ["01", "Entender", "Separar sintomas do problema e buscar evidências antes de definir uma solução."],
@@ -70,10 +65,7 @@ export default function Home() {
             ].map(([index, title, description]) => (
               <Reveal className="home-thinking__row" key={index}>
                 <span>{index}</span>
-                <div>
-                  <h3>{title}</h3>
-                  <p>{description}</p>
-                </div>
+                <div><h3>{title}</h3><p>{description}</p></div>
               </Reveal>
             ))}
           </div>
@@ -87,25 +79,10 @@ export default function Home() {
               <p>Minha experiência recente passa principalmente por pós-compra, autoatendimento, assinaturas e Martech.</p>
               <p>Também sou formado em Análise e Desenvolvimento de Sistemas, o que contribui para minha relação com tecnologia e para entender melhor as restrições das soluções que desenho.</p>
             </Reveal>
-
-            <Reveal className="home-about__photo">
-              <Image
-                className="desktop-only"
-                src="/figma/home-profile-desktop.png"
-                alt="Foto de Wanderson Silva"
-                width={279}
-                height={283}
-                sizes="279px"
-              />
-              <Image
-                className="mobile-only"
-                src="/figma/home-profile-mobile.png"
-                alt="Foto de Wanderson Silva"
-                width={342}
-                height={346}
-                sizes="342px"
-              />
-            </Reveal>
+            <div className="home-about__photo">
+              <Image className="desktop-only" src="/figma/home-profile-desktop.png" alt="Foto de Wanderson Silva" width={279} height={283} sizes="279px" />
+              <Image className="mobile-only" src="/figma/home-profile-mobile.png" alt="Foto de Wanderson Silva" width={342} height={346} sizes="342px" />
+            </div>
           </div>
         </section>
 
@@ -118,20 +95,8 @@ export default function Home() {
               <a href={contact.email}>E-mail ↗</a>
             </div>
           </Reveal>
-
-          <div className="home-contact__mini-footer">
-            <div>
-              <strong>Wanderson Silva (Wan)</strong>
-              <span>Product Designer</span>
-            </div>
-            <div>
-              <span>São Paulo, Brasil</span>
-              <span>2026</span>
-            </div>
-          </div>
         </section>
       </main>
-
       <GlobalFooter />
     </>
   );
