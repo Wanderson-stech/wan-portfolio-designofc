@@ -990,7 +990,7 @@ img { display: block; max-width: 100%; height: auto; }
 }
 
 .reenvio-native-slide {
-  flex: 0 0 360px;
+  flex: 0 0 calc((100% - 72px) / 4);
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -1035,7 +1035,7 @@ img { display: block; max-width: 100%; height: auto; }
 
 .reenvio-figma-artifact {
   width: var(--artifact-width);
-  max-width: calc(100vw - 48px);
+  max-width: 100%;
 }
 
 .reenvio-figma-artifact__media {
