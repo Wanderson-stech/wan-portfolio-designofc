@@ -68,6 +68,7 @@ jobs:
               const context = await browser.newContext({
                 viewport: { width: viewport.width, height: viewport.height },
                 deviceScaleFactor: 1,
+                reducedMotion: "reduce",
               });
 
               for (const pageDef of pages) {
