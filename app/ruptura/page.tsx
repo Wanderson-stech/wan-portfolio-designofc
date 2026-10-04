@@ -1,4 +1,3 @@
-import Image from "next/image";
 import type { Metadata } from "next";
 import {
   BeforeAfter,
@@ -10,7 +9,14 @@ import {
   PortfolioHeader,
   QuickFacts,
 } from "@/components/portfolio";
-import { MultichannelCarousel } from "@/components/product-artifacts";
+import {
+  MultichannelCarousel,
+  RupturaComplexityArtifact,
+  RupturaEntryArtifact,
+  RupturaItemsArtifact,
+  RupturaTimelinesArtifact,
+  RupturaValuesArtifact,
+} from "@/components/product-artifacts";
 import { PortfolioCarousel } from "@/components/carousel";
 
 export const metadata: Metadata = {
@@ -32,11 +38,11 @@ const metrics = [
 ];
 
 const solutionModules = [
-  { number: "01", kicker: "ENTRADA NA RUPTURA", title: "Contextualizar antes de detalhar.", description: "A ruptura muda a expectativa do pedido. Por isso, o aviso entra cedo na hierarquia da tela e adapta a mensagem ao tipo de alteração.", image: "/figma/ruptura-stage-1.png", width: 940, height: 670, layout: "side" },
-  { number: "02", kicker: "ITENS", title: "Explicar a ruptura no nível do produto.", description: "“Pedido ajustado” não basta. O cliente precisa reconhecer qual item mudou e qual foi o tipo de alteração.", image: "/figma/ruptura-stage-items.png", width: 1360, height: 992, layout: "wide" },
-  { number: "03", kicker: "TIMELINE", title: "O CTA muda com o momento da jornada.", description: "A mesma ruptura precisa se comportar de forma diferente enquanto o pedido ainda está sendo acompanhado, depois da entrega e no Compre & Retire.", image: "/figma/ruptura-stage-timelines.png", width: 1360, height: 900, layout: "wide" },
-  { number: "04", kicker: "VALORES", title: "Explicar de onde veio a diferença.", description: "Quando a ruptura muda o total, a interface precisa mostrar o impacto financeiro sem transformar o resumo em uma aula de regra de negócio.", image: "/figma/ruptura-stage-values.png", width: 1020, height: 915, layout: "side" },
-  { number: "05", kicker: "COMPLEXIDADE", title: "Preservar contexto em pedidos mistos e pagamentos diferentes.", description: "A ruptura pode afetar apenas uma parte do pedido e o reembolso precisa refletir exatamente a origem do pagamento.", image: "/figma/ruptura-stage-complexity.png", width: 1049, height: 750, layout: "side" },
+  { number: "01", kicker: "ENTRADA NA RUPTURA", title: "Contextualizar antes de detalhar.", description: "A ruptura muda a expectativa do pedido. Por isso, o aviso entra cedo na hierarquia da tela e adapta a mensagem ao tipo de alteração.", visual: <RupturaEntryArtifact /> },
+  { number: "02", kicker: "ITENS", title: "Explicar a ruptura no nível do produto.", description: "“Pedido ajustado” não basta. O cliente precisa reconhecer qual item mudou e qual foi o tipo de alteração.", visual: <RupturaItemsArtifact /> },
+  { number: "03", kicker: "TIMELINE", title: "O CTA muda com o momento da jornada.", description: "A mesma ruptura precisa se comportar de forma diferente enquanto o pedido ainda está sendo acompanhado, depois da entrega e no Compre & Retire.", visual: <RupturaTimelinesArtifact /> },
+  { number: "04", kicker: "VALORES", title: "Explicar de onde veio a diferença.", description: "Quando a ruptura muda o total, a interface precisa mostrar o impacto financeiro sem transformar o resumo em uma aula de regra de negócio.", visual: <RupturaValuesArtifact /> },
+  { number: "05", kicker: "COMPLEXIDADE", title: "Preservar contexto em pedidos mistos e pagamentos diferentes.", description: "A ruptura pode afetar apenas uma parte do pedido e o reembolso precisa refletir exatamente a origem do pagamento.", visual: <RupturaComplexityArtifact /> },
 ] as const;
 
 export default function RupturaPage() {
@@ -154,8 +160,8 @@ export default function RupturaPage() {
                   <h3>{module.title}</h3>
                   <p>{module.description}</p>
                 </div>
-                <div className="ruptura-module__visual">
-                  <Image src={module.image} alt="" width={module.width} height={module.height} sizes="(max-width: 767px) 342px, 1040px" />
+                <div className="ruptura-module__visual ruptura-module__visual--native">
+                  {module.visual}
                 </div>
               </article>
             ))}
