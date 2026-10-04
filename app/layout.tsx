@@ -1,25 +1,33 @@
 import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import { SmoothScroll } from "@/components/smooth-scroll";
+import { siteUrl } from "@/lib/site";
+
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+});
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl()),
   title: {
     default: "Wan — Product Designer",
-    template: "%s · Wan"
+    template: "%s · Wan",
   },
-  description: "Portfólio de Wanderson Silva (Wan), Product Designer com foco em produto digital, pós-compra e experiências complexas.",
-  metadataBase: new URL("https://wan-portfolio.vercel.app"),
+  description: "Portfólio de Wanderson Silva (Wan), Product Designer.",
   openGraph: {
     title: "Wan — Product Designer",
-    description: "Cases de Product Design em pós-compra, tracking e autoatendimento.",
-    type: "website"
-  }
+    description: "Portfólio de Product Design de Wanderson Silva.",
+    type: "website",
+  },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="pt-BR">
-      <body>
+      <body className={inter.className}>
         <SmoothScroll>{children}</SmoothScroll>
       </body>
     </html>
