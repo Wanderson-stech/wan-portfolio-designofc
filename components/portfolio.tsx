@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { Reveal } from "@/components/reveal";
 import { PortfolioCarousel } from "@/components/carousel";
@@ -81,8 +80,10 @@ export function ProjectCard({
   return (
     <article className="home-project">
       <Link href={href} className="home-project__image" aria-label={"Ver case " + title}>
-        <Image className="desktop-only" src={desktopImage} alt="" width={720} height={720} sizes="720px" />
-        <Image className="mobile-only" src={mobileImage} alt="" width={342} height={342} sizes="342px" />
+        <picture>
+          <source media="(max-width: 767px)" srcSet={mobileImage} />
+          <img src={desktopImage} alt="" width={720} height={720} loading="lazy" decoding="async" />
+        </picture>
       </Link>
 
       <div className="home-project__copy">
@@ -142,8 +143,10 @@ export function CaseHero({
           </Reveal>
 
           <div className="case-hero__media">
-            <Image className="desktop-only" src={desktopImage} alt="" width={672} height={839} priority sizes="672px" />
-            <Image className="mobile-only" src={mobileImage} alt="" width={342} height={427} priority sizes="342px" />
+            <picture>
+              <source media="(max-width: 767px)" srcSet={mobileImage} />
+              <img src={desktopImage} alt="" width={672} height={839} fetchPriority="high" decoding="async" />
+            </picture>
           </div>
         </div>
       </div>
@@ -259,7 +262,6 @@ export function NextCase({
           <p>{description}</p>
           <Link href={href} className="figma-brand-button">Ver case</Link>
         </div>
-        <Link href={href} className="next-case__arrow" aria-label={"Ver case " + title}>→</Link>
       </div>
       <div className="next-case__rule" />
     </section>
