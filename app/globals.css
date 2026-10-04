@@ -976,6 +976,7 @@ img { display: block; max-width: 100%; height: auto; }
 
 .reenvio-solution {
   background: var(--bg);
+  padding-bottom: 40px;
 }
 
 .reenvio-solution > h2 { margin-top: 24px; }
@@ -989,7 +990,7 @@ img { display: block; max-width: 100%; height: auto; }
 }
 
 .reenvio-native-slide {
-  flex: 0 0 348px;
+  flex: 0 0 360px;
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -1039,7 +1040,7 @@ img { display: block; max-width: 100%; height: auto; }
 
 .reenvio-figma-artifact__media {
   width: var(--artifact-width);
-  height: calc(var(--artifact-height) - 154px);
+  height: auto;
   max-width: 100%;
   overflow: hidden;
   border: 1px solid var(--border);
@@ -1050,14 +1051,8 @@ img { display: block; max-width: 100%; height: auto; }
 .reenvio-figma-artifact__media picture,
 .reenvio-figma-artifact__media img {
   width: 100%;
-  height: 100%;
+  height: auto;
   display: block;
-}
-
-.reenvio-figma-artifact__media img {
-  height: var(--artifact-height);
-  object-fit: fill;
-  transform: translateY(-36px);
 }
 
 .reenvio-figma-artifact h3 {
@@ -2556,7 +2551,7 @@ img { display: block; max-width: 100%; height: auto; }
     justify-content: flex-start;
   }
   .reenvio-figma-artifact {
-    width: 300px;
+    width: var(--artifact-mobile-width);
   }
 
   .figma-nav-mobile .theme-toggle {
@@ -2566,13 +2561,12 @@ img { display: block; max-width: 100%; height: auto; }
   }
 
   .reenvio-figma-artifact__media {
-    width: 300px;
-    height: calc(var(--artifact-mobile-height) - 120px);
+    width: var(--artifact-mobile-width);
   }
 
+  .reenvio-figma-artifact__media picture,
   .reenvio-figma-artifact__media img {
-    height: var(--artifact-mobile-height);
-    transform: translateY(-28px);
+    height: auto;
   }
 
   .journey-artifact { width: 300px; }
