@@ -503,6 +503,10 @@ img { display: block; max-width: 100%; height: auto; }
   justify-content: space-between;
 }
 
+.portfolio-carousel__controls--without-counter {
+  justify-content: flex-end;
+}
+
 .portfolio-carousel__counter {
   color: var(--subtle);
   font-size: 13px;

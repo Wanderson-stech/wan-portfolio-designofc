@@ -51,7 +51,7 @@ export function PortfolioCarousel({
 
   return (
     <div className={"portfolio-carousel " + className} aria-label={label}>
-      <div className="portfolio-carousel__controls">
+      <div className={"portfolio-carousel__controls" + (showCounter ? "" : " portfolio-carousel__controls--without-counter")}>
         {showCounter ? (
           <span className="portfolio-carousel__counter">
             {String(index + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
