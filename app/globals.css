@@ -2807,6 +2807,21 @@ img { display: block; max-width: 100%; height: auto; }
   background: transparent;
 }
 
+.ruptura-figma-artifact {
+  width: 100%;
+}
+
+.ruptura-figma-artifact picture,
+.ruptura-figma-artifact img {
+  display: block;
+  width: 100%;
+}
+
+.ruptura-figma-artifact img {
+  height: auto;
+  object-fit: contain;
+}
+
 .ruptura-native {
   width: 100%;
   color: var(--text);

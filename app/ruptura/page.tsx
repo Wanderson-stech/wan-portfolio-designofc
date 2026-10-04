@@ -9,14 +9,6 @@ import {
   PortfolioHeader,
   QuickFacts,
 } from "@/components/portfolio";
-import {
-  MultichannelCarousel,
-  RupturaComplexityArtifact,
-  RupturaEntryArtifact,
-  RupturaItemsArtifact,
-  RupturaTimelinesArtifact,
-  RupturaValuesArtifact,
-} from "@/components/product-artifacts";
 import { PortfolioCarousel } from "@/components/carousel";
 
 export const metadata: Metadata = {
@@ -37,13 +29,93 @@ const metrics = [
   { value: "↓", label: "Surpresa relatada no NSS", detail: "Redução das avaliações em que clientes relatavam descobrir só no recebimento que um item havia faltado." },
 ];
 
+type RupturaArtifactImage = {
+  desktop: { src: string; width: number; height: number };
+  mobile: { src: string; width: number; height: number };
+  alt: string;
+};
+
+function RupturaFigmaArtifact({ image }: { image: RupturaArtifactImage }) {
+  return (
+    <div className="ruptura-figma-artifact">
+      <picture>
+        <source media="(max-width: 767px)" srcSet={image.mobile.src} />
+        <img
+          src={image.desktop.src}
+          alt={image.alt}
+          width={image.desktop.width}
+          height={image.desktop.height}
+          loading="lazy"
+          decoding="async"
+        />
+      </picture>
+    </div>
+  );
+}
+
 const solutionModules = [
-  { number: "01", kicker: "ENTRADA NA RUPTURA", title: "Contextualizar antes de detalhar.", description: "A ruptura muda a expectativa do pedido. Por isso, o aviso entra cedo na hierarquia da tela e adapta a mensagem ao tipo de alteração.", visual: <RupturaEntryArtifact /> },
-  { number: "02", kicker: "ITENS", title: "Explicar a ruptura no nível do produto.", description: "“Pedido ajustado” não basta. O cliente precisa reconhecer qual item mudou e qual foi o tipo de alteração.", visual: <RupturaItemsArtifact /> },
-  { number: "03", kicker: "TIMELINE", title: "O CTA muda com o momento da jornada.", description: "A mesma ruptura precisa se comportar de forma diferente enquanto o pedido ainda está sendo acompanhado, depois da entrega e no Compre & Retire.", visual: <RupturaTimelinesArtifact /> },
-  { number: "04", kicker: "VALORES", title: "Explicar de onde veio a diferença.", description: "Quando a ruptura muda o total, a interface precisa mostrar o impacto financeiro sem transformar o resumo em uma aula de regra de negócio.", visual: <RupturaValuesArtifact /> },
-  { number: "05", kicker: "COMPLEXIDADE", title: "Preservar contexto em pedidos mistos e pagamentos diferentes.", description: "A ruptura pode afetar apenas uma parte do pedido e o reembolso precisa refletir exatamente a origem do pagamento.", visual: <RupturaComplexityArtifact /> },
+  {
+    number: "01",
+    kicker: "ENTRADA NA RUPTURA",
+    title: "Contextualizar antes de detalhar.",
+    description: "A ruptura muda a expectativa do pedido. Por isso, o aviso entra cedo na hierarquia da tela e adapta a mensagem ao tipo de alteração.",
+    image: {
+      desktop: { src: "/figma/ruptura-stage-1.png", width: 940, height: 624 },
+      mobile: { src: "/figma/ruptura-mobile-module-1.png", width: 342, height: 1416 },
+      alt: "Artefato fiel do Figma mostrando a entrada da ruptura no detalhe do pedido.",
+    },
+  },
+  {
+    number: "02",
+    kicker: "ITENS",
+    title: "Explicar a ruptura no nível do produto.",
+    description: "“Pedido ajustado” não basta. O cliente precisa reconhecer qual item mudou e qual foi o tipo de alteração.",
+    image: {
+      desktop: { src: "/figma/ruptura-stage-items.png", width: 1360, height: 948 },
+      mobile: { src: "/figma/ruptura-mobile-module-2.png", width: 342, height: 1082 },
+      alt: "Artefato fiel do Figma mostrando estados de itens removidos, ajustados e combinados.",
+    },
+  },
+  {
+    number: "03",
+    kicker: "TIMELINE",
+    title: "O CTA muda com o momento da jornada.",
+    description: "A mesma ruptura precisa se comportar de forma diferente enquanto o pedido ainda está sendo acompanhado, depois da entrega e no Compre & Retire.",
+    image: {
+      desktop: { src: "/figma/ruptura-stage-timelines.png", width: 1360, height: 828 },
+      mobile: { src: "/figma/ruptura-mobile-module-3.png", width: 342, height: 958 },
+      alt: "Artefato fiel do Figma mostrando timelines e CTAs por momento da jornada.",
+    },
+  },
+  {
+    number: "04",
+    kicker: "VALORES",
+    title: "Explicar de onde veio a diferença.",
+    description: "Quando a ruptura muda o total, a interface precisa mostrar o impacto financeiro sem transformar o resumo em uma aula de regra de negócio.",
+    image: {
+      desktop: { src: "/figma/ruptura-stage-values.png", width: 1020, height: 581 },
+      mobile: { src: "/figma/ruptura-mobile-module-4.png", width: 342, height: 950 },
+      alt: "Artefato fiel do Figma mostrando resumo de valores, tooltip e notas explicativas.",
+    },
+  },
+  {
+    number: "05",
+    kicker: "COMPLEXIDADE",
+    title: "Preservar contexto em pedidos mistos e pagamentos diferentes.",
+    description: "A ruptura pode afetar apenas uma parte do pedido e o reembolso precisa refletir exatamente a origem do pagamento.",
+    image: {
+      desktop: { src: "/figma/ruptura-stage-complexity.png", width: 1020, height: 750 },
+      mobile: { src: "/figma/ruptura-mobile-module-5.png", width: 342, height: 1550 },
+      alt: "Artefato fiel do Figma mostrando pedido misto, pagamentos e notas explicativas.",
+    },
+  },
 ] as const;
+
+const multichannelImage: RupturaArtifactImage = {
+  desktop: { src: "/figma/ruptura-stage-channels.png", width: 1360, height: 680 },
+  mobile: { src: "/figma/ruptura-mobile-module-6.png", width: 342, height: 872 },
+  alt: "Artefato fiel do Figma mostrando Push, Live Activities, WhatsApp e e-mail.",
+};
 
 export default function RupturaPage() {
   return (
@@ -161,7 +233,7 @@ export default function RupturaPage() {
                   <p>{module.description}</p>
                 </div>
                 <div className="ruptura-module__visual ruptura-module__visual--native">
-                  {module.visual}
+                  <RupturaFigmaArtifact image={module.image} />
                 </div>
               </article>
             ))}
@@ -173,7 +245,9 @@ export default function RupturaPage() {
                 <h3>Cada canal tem um papel diferente.</h3>
                 <p>A mensagem é a mesma, mas a profundidade muda: alguns canais alertam, outros acompanham e outros registram o detalhe completo.</p>
               </div>
-              <MultichannelCarousel />
+              <div className="ruptura-module__visual ruptura-module__visual--native">
+                <RupturaFigmaArtifact image={multichannelImage} />
+              </div>
             </article>
           </div>
 
