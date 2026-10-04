@@ -12,9 +12,15 @@
   --positive: #3ddc84;
   --danger: #c91f32;
   --yellow: #f8d878;
-  --desktop-home: 72px;
-  --desktop-case: 80px;
+  --page-gutter: 80px;
   --content: 1280px;
+  --page-inline: max(var(--page-gutter), calc((100vw - var(--content)) / 2));
+  --section-top: 72px;
+  --section-bottom: 80px;
+  --section-heading-gap: 32px;
+  --section-content-gap: 56px;
+  --section-divider-gap: 48px;
+  --discovery-gap: 64px;
 }
 
 html[data-theme="light"] {
@@ -94,7 +100,7 @@ img { display: block; max-width: 100%; height: auto; }
 
 .figma-header {
   min-height: 86px;
-  padding: 0 var(--desktop-home);
+  padding: 0 var(--page-inline);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -106,7 +112,7 @@ img { display: block; max-width: 100%; height: auto; }
 
 .figma-header--case {
   min-height: 88px;
-  padding-inline: var(--desktop-case);
+  padding-inline: var(--page-inline);
 }
 
 .figma-brand {
@@ -184,7 +190,7 @@ img { display: block; max-width: 100%; height: auto; }
 /* ---------------- Home ---------------- */
 
 .home-hero {
-  padding: 40px var(--desktop-home) 72px;
+  padding: 40px var(--page-inline) 72px;
   background: var(--bg);
 }
 
@@ -227,7 +233,7 @@ img { display: block; max-width: 100%; height: auto; }
 }
 
 .home-projects {
-  padding: 0 var(--desktop-home) 72px;
+  padding: 0 var(--page-inline) 72px;
   background: var(--bg);
 }
 
@@ -336,7 +342,7 @@ img { display: block; max-width: 100%; height: auto; }
 }
 
 .home-thinking {
-  padding: 72px var(--desktop-home);
+  padding: 72px var(--page-inline);
   background: var(--bg-alt);
 }
 
@@ -381,7 +387,7 @@ img { display: block; max-width: 100%; height: auto; }
 }
 
 .home-about {
-  padding: 72px var(--desktop-home);
+  padding: 72px var(--page-inline);
   background: var(--bg);
 }
 
@@ -412,7 +418,7 @@ img { display: block; max-width: 100%; height: auto; }
 }
 
 .home-contact {
-  padding: 72px var(--desktop-home);
+  padding: 72px var(--page-inline);
   background: var(--bg-alt);
 }
 
@@ -433,7 +439,7 @@ img { display: block; max-width: 100%; height: auto; }
 /* ---------------- Footer ---------------- */
 
 .figma-footer {
-  padding: 40px 80px 52px;
+  padding: 40px var(--page-inline) 52px;
   background: var(--bg);
 }
 
@@ -549,10 +555,21 @@ img { display: block; max-width: 100%; height: auto; }
   flex: 0 0 100%;
 }
 
+/* Keep every page-level block on the same centered construction grid. */
+.home-hero > *,
+.home-projects > *,
+.home-thinking > *,
+.home-about > *,
+.home-contact > *,
+.figma-footer > * {
+  width: min(var(--content), 100%);
+  margin-inline: auto;
+}
+
 /* ---------------- Case hero ---------------- */
 
 .case-hero {
-  padding: 24px var(--desktop-case) 80px;
+  padding: 24px var(--page-inline) var(--section-bottom);
   background: var(--bg);
 }
 
@@ -654,7 +671,7 @@ img { display: block; max-width: 100%; height: auto; }
 /* ---------------- Quick facts ---------------- */
 
 .quick-facts {
-  padding: 0 80px;
+  padding: 0 var(--page-inline);
   background: var(--bg);
 }
 
@@ -689,7 +706,7 @@ img { display: block; max-width: 100%; height: auto; }
 /* ---------------- Shared case section ---------------- */
 
 .case-section {
-  padding: 72px 80px 80px;
+  padding: var(--section-top) var(--page-inline) var(--section-bottom);
   background: var(--bg);
 }
 
@@ -709,7 +726,7 @@ img { display: block; max-width: 100%; height: auto; }
 }
 
 .case-context__intro {
-  margin-top: 48px !important;
+  margin-top: var(--section-heading-gap) !important;
 }
 
 .case-context__intro h2 {
@@ -736,7 +753,7 @@ img { display: block; max-width: 100%; height: auto; }
 }
 
 .context-flow {
-  margin-top: 48px !important;
+  margin-top: var(--section-content-gap) !important;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 12px;
@@ -773,7 +790,7 @@ img { display: block; max-width: 100%; height: auto; }
 .case-emphasis,
 .results-final,
 .ruptura-solution__closing {
-  margin-top: 48px !important;
+  margin-top: var(--section-divider-gap) !important;
   padding-top: 32px;
   border-top: 1px solid var(--border);
   color: var(--text);
@@ -784,7 +801,7 @@ img { display: block; max-width: 100%; height: auto; }
 }
 
 .discovery {
-  margin-top: 64px !important;
+  margin-top: var(--discovery-gap) !important;
   padding-top: 32px;
   border-top: 1px solid var(--border);
 }
@@ -843,10 +860,10 @@ img { display: block; max-width: 100%; height: auto; }
 .reprioritization > h2,
 .case-change > h2,
 .case-results > h2 {
-  margin-top: 48px;
+  margin-top: var(--section-heading-gap);
 }
 
-.decision-rows { margin-top: 56px !important; }
+.decision-rows { margin-top: var(--section-content-gap) !important; }
 
 .decision-row {
   padding: 0 0 32px;
@@ -878,7 +895,7 @@ img { display: block; max-width: 100%; height: auto; }
 
 .mvp-stack,
 .structure-stack {
-  margin-top: 56px !important;
+  margin-top: var(--section-content-gap) !important;
 }
 
 .mvp-step,
@@ -942,7 +959,7 @@ img { display: block; max-width: 100%; height: auto; }
 }
 
 .reprioritization__cards {
-  margin-top: 40px !important;
+  margin-top: var(--section-content-gap) !important;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
@@ -957,7 +974,7 @@ img { display: block; max-width: 100%; height: auto; }
 }
 
 .reprioritization__label {
-  margin-top: 48px !important;
+  margin-top: var(--section-divider-gap) !important;
 }
 
 .reprioritization__split {
@@ -979,18 +996,18 @@ img { display: block; max-width: 100%; height: auto; }
   padding-bottom: 24px;
 }
 
-.reenvio-solution > h2 { margin-top: 24px; }
+.reenvio-solution > h2 { margin-top: var(--section-heading-gap); }
 
 .reenvio-native-carousel {
   margin-top: 32px !important;
 }
 
 .case-section > .reenvio-native-carousel {
-  width: min(1470px, calc(100vw - 160px));
+  width: min(var(--content), 100%);
 }
 
 .reenvio-native-carousel .portfolio-carousel__controls {
-  width: min(1280px, 100%);
+  width: 100%;
 }
 
 .reenvio-native-carousel .portfolio-carousel__track {
@@ -1427,21 +1444,21 @@ img { display: block; max-width: 100%; height: auto; }
 /* ---------------- Ruptura solution ---------------- */
 
 .ruptura-solution {
-  padding: 72px 40px 80px;
+  padding: var(--section-top) var(--page-inline) var(--section-bottom);
   background: var(--bg);
 }
 
 .ruptura-solution__header,
 .ruptura-solution__modules,
 .ruptura-solution__closing {
-  width: min(1360px, 100%);
+  width: min(var(--content), 100%);
   margin-left: auto;
   margin-right: auto;
 }
 
 .ruptura-solution__header h2 {
   max-width: 1160px;
-  margin-top: 20px;
+  margin-top: var(--section-heading-gap);
 }
 
 .ruptura-solution__header > p:last-child {
@@ -1449,7 +1466,7 @@ img { display: block; max-width: 100%; height: auto; }
   margin-top: 20px;
 }
 
-.ruptura-solution__modules { margin-top: 56px; }
+.ruptura-solution__modules { margin-top: var(--section-content-gap); }
 
 .ruptura-module {
   padding-top: 32px;
@@ -1769,7 +1786,7 @@ img { display: block; max-width: 100%; height: auto; }
 .case-change { background: var(--bg); }
 
 .before-after {
-  margin-top: 56px !important;
+  margin-top: var(--section-content-gap) !important;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 80px;
@@ -1815,7 +1832,7 @@ img { display: block; max-width: 100%; height: auto; }
 
 .case-closing-copy {
   max-width: 760px;
-  margin-top: 48px !important;
+  margin-top: var(--section-divider-gap) !important;
   display: flex;
   flex-direction: column;
   gap: 14px;
@@ -1831,7 +1848,7 @@ img { display: block; max-width: 100%; height: auto; }
 }
 
 .metric-row {
-  margin-top: 48px !important;
+  margin-top: var(--section-content-gap) !important;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
@@ -1868,7 +1885,7 @@ img { display: block; max-width: 100%; height: auto; }
 }
 
 .results-bars {
-  margin: 48px auto 0;
+  margin: var(--section-content-gap) auto 0;
   width: min(var(--content), 100%);
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1919,8 +1936,8 @@ img { display: block; max-width: 100%; height: auto; }
 
 .results-reading {
   max-width: 1120px;
-  margin-top: 40px !important;
-  padding-top: 40px;
+  margin-top: var(--section-divider-gap) !important;
+  padding-top: var(--section-divider-gap);
   border-top: 1px solid var(--border);
   font-size: 20px;
   line-height: 30px;
@@ -1938,7 +1955,7 @@ img { display: block; max-width: 100%; height: auto; }
 /* ---------------- Next case ---------------- */
 
 .next-case {
-  padding: 56px 80px;
+  padding: 56px var(--page-inline);
   background: var(--surface-raised);
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
@@ -2001,8 +2018,8 @@ img { display: block; max-width: 100%; height: auto; }
 
 @media (min-width: 768px) and (max-width: 1180px) {
   :root {
-    --desktop-home: 40px;
-    --desktop-case: 40px;
+    --page-gutter: 40px;
+    --page-inline: 40px;
   }
 
   .home-project {
@@ -2017,9 +2034,9 @@ img { display: block; max-width: 100%; height: auto; }
     gap: 36px;
   }
 
-  .quick-facts { padding-inline: 40px; }
-  .case-section { padding-inline: 40px; }
-  .ruptura-solution { padding-inline: 24px; }
+  .quick-facts,
+  .case-section,
+  .ruptura-solution { padding-inline: var(--page-inline); }
   .channel-card__layout { grid-template-columns: minmax(0, 1fr) 300px; }
   .reprioritization__cards { gap: 12px; }
 }
@@ -2027,13 +2044,22 @@ img { display: block; max-width: 100%; height: auto; }
 /* ---------------- Mobile ---------------- */
 
 @media (max-width: 767px) {
+  :root {
+    --page-gutter: 24px;
+    --page-inline: 24px;
+    --section-heading-gap: 24px;
+    --section-content-gap: 32px;
+    --section-divider-gap: 28px;
+    --discovery-gap: 32px;
+  }
+
   .desktop-only { display: none !important; }
   .mobile-only { display: block !important; }
 
   .figma-header,
   .figma-header--case {
     min-height: 58px;
-    padding: 0 24px;
+    padding: 0 var(--page-inline);
   }
 
   .figma-brand {
@@ -2070,7 +2096,7 @@ img { display: block; max-width: 100%; height: auto; }
   }
 
   .home-hero {
-    padding: 36px 24px 56px;
+    padding: 36px var(--page-inline) 56px;
   }
 
   .home-hero__content { gap: 20px; }
@@ -2099,7 +2125,7 @@ img { display: block; max-width: 100%; height: auto; }
   }
 
   .home-projects {
-    padding: 56px 24px 64px;
+    padding: 56px var(--page-inline) 64px;
   }
 
   .home-projects__intro {
@@ -2174,7 +2200,7 @@ img { display: block; max-width: 100%; height: auto; }
   .home-thinking,
   .home-about,
   .home-contact {
-    padding: 48px 24px;
+    padding: 48px var(--page-inline);
   }
 
   .home-thinking__intro {
@@ -2235,7 +2261,7 @@ img { display: block; max-width: 100%; height: auto; }
   }
 
   .figma-footer {
-    padding: 48px 24px 40px;
+    padding: 48px var(--page-inline) 40px;
   }
 
   .figma-footer__row {
@@ -2261,7 +2287,7 @@ img { display: block; max-width: 100%; height: auto; }
 
   /* Cases mobile */
   .case-hero {
-    padding: 28px 24px 56px;
+    padding: 28px var(--page-inline) 56px;
   }
 
   .case-back {
@@ -2324,7 +2350,7 @@ img { display: block; max-width: 100%; height: auto; }
   }
 
   .quick-facts {
-    padding: 28px 24px 48px;
+    padding: 28px var(--page-inline) 48px;
   }
 
   .quick-facts__mobile-title {
@@ -2371,7 +2397,7 @@ img { display: block; max-width: 100%; height: auto; }
   .portfolio-carousel__track { gap: 12px; }
 
   .case-section {
-    padding: 48px 24px;
+    padding: 48px var(--page-inline);
   }
 
   .case-section h2,
@@ -2387,7 +2413,7 @@ img { display: block; max-width: 100%; height: auto; }
   .reprioritization > h2,
   .case-change > h2,
   .case-results > h2 {
-    margin-top: 28px !important;
+    margin-top: var(--section-heading-gap) !important;
   }
 
   .case-context__intro h2 { margin-bottom: 20px; }
@@ -2404,7 +2430,7 @@ img { display: block; max-width: 100%; height: auto; }
   }
 
   .context-flow {
-    margin-top: 28px !important;
+    margin-top: var(--section-content-gap) !important;
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -2431,14 +2457,14 @@ img { display: block; max-width: 100%; height: auto; }
   .case-emphasis,
   .results-final,
   .ruptura-solution__closing {
-    margin-top: 28px !important;
+    margin-top: var(--section-divider-gap) !important;
     padding-top: 24px;
     font-size: 20px;
     line-height: 28px;
   }
 
   .discovery {
-    margin-top: 32px !important;
+    margin-top: var(--discovery-gap) !important;
     padding-top: 28px;
   }
 
@@ -2469,7 +2495,7 @@ img { display: block; max-width: 100%; height: auto; }
   .decision-rows,
   .mvp-stack,
   .structure-stack {
-    margin-top: 32px !important;
+    margin-top: var(--section-content-gap) !important;
   }
 
   .decision-row {
@@ -2556,7 +2582,7 @@ img { display: block; max-width: 100%; height: auto; }
   .case-section > .reenvio-native-carousel {
     width: 100%;
   }
-  .reenvio-native-carousel { margin-top: 28px !important; }
+  .reenvio-native-carousel { margin-top: var(--section-content-gap) !important; }
   .reenvio-native-carousel .portfolio-carousel__controls { width: 100%; }
   .reenvio-native-carousel .portfolio-carousel__track { gap: 0; }
   .reenvio-native-slide {
@@ -2628,7 +2654,7 @@ img { display: block; max-width: 100%; height: auto; }
 
   /* Ruptura solution mobile */
   .ruptura-solution {
-    padding: 48px 24px;
+    padding: 48px var(--page-inline);
   }
 
   .ruptura-solution__header h2 {
@@ -2639,7 +2665,7 @@ img { display: block; max-width: 100%; height: auto; }
     margin-top: 20px;
   }
 
-  .ruptura-solution__modules { margin-top: 36px; }
+  .ruptura-solution__modules { margin-top: var(--section-content-gap); }
 
   .ruptura-module {
     padding-top: 28px;
@@ -2750,7 +2776,7 @@ img { display: block; max-width: 100%; height: auto; }
   .email-summary p { font-size: 9px; }
 
   .before-after-mobile__slide { flex-basis: 100%; }
-  .before-after-mobile { margin-top: 28px; }
+  .before-after-mobile { margin-top: var(--section-content-gap); }
 
   .journey-column {
     padding: 18px;
@@ -2768,7 +2794,7 @@ img { display: block; max-width: 100%; height: auto; }
   }
 
   .metric-row {
-    margin-top: 28px !important;
+    margin-top: var(--section-content-gap) !important;
     grid-template-columns: 1fr;
     gap: 12px;
   }
@@ -2789,7 +2815,7 @@ img { display: block; max-width: 100%; height: auto; }
   }
 
   .results-bars {
-    margin-top: 28px;
+    margin-top: var(--section-content-gap);
     grid-template-columns: 1fr;
     gap: 12px;
   }
@@ -2814,7 +2840,7 @@ img { display: block; max-width: 100%; height: auto; }
   }
 
   .next-case {
-    padding: 36px 24px 40px;
+    padding: 36px var(--page-inline) 40px;
   }
 
   .next-case__eyebrow { margin-top: 24px; }
