@@ -24,9 +24,9 @@ const facts = [
 ];
 
 const metrics = [
-  { value: "−35,6%", label: "SAC", detail: "1.004 → 646 casos/dia" },
-  { value: "−27,7%", label: "Todos os canais", detail: "2.476 → 1.789 casos/dia" },
-  { value: "−6,5%", label: "Pedidos captados", detail: "81.423 → 76.119 pedidos/dia" },
+  { value: "−37,1%", label: "SAC", detail: "≈1.020 → ≈641 casos/dia" },
+  { value: "−29,1%", label: "Todos os canais", detail: "≈2.500 → ≈1.773 casos/dia" },
+  { value: "−7,2%", label: "Pedidos captados", detail: "≈81.500 → ≈75.600 pedidos/dia" },
 ];
 
 export default function ReenvioPage() {
@@ -114,9 +114,8 @@ export default function ReenvioPage() {
           <p className="results-intro">Após a ativação do reenvio automático em app e site, o volume médio diário de solicitações de reenvio caiu tanto no SAC quanto no total dos canais.</p>
           <MetricRow metrics={metrics} />
           <ResultsBars />
-          <p className="results-reading">Mesmo com 6,5% menos pedidos captados no período, a redução dos reenvios foi proporcionalmente maior — 35,6% no SAC e 27,7% considerando todos os canais.</p>
+          <p className="results-reading">Mesmo com cerca de 7% menos pedidos captados no período, a redução dos reenvios foi proporcionalmente maior — aproximadamente 37% no SAC e 29% considerando todos os canais.</p>
           <p className="results-source">Fonte: Power BI + SAP Transportes + BI Torre de Controle + ServiceNow · Ativação do reenvio automático: 15/07</p>
-          <div className="results-final-rule" />
           <p className="results-final">Saímos de uma experiência que explicava o problema para uma experiência que ajudava o cliente a resolvê-lo.</p>
         </section>
 

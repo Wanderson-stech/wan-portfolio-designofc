@@ -53,14 +53,14 @@ export default function Home() {
 
         <section className="home-thinking">
           <Reveal className="home-thinking__intro">
-            <h2>Meu trabalho não começa na tela.</h2>
-            <p>Antes de desenhar uma solução, tento entender o que está acontecendo entre usuário, produto, tecnologia e operação.</p>
+            <h2>Trabalho em jornadas de pós-compra.</h2>
+            <p>Investigo como pedido, operação e comunicação se conectam para tornar cada etapa mais clara e acionável para o cliente.</p>
           </Reveal>
           <div className="home-thinking__rows">
             {[
-              ["01", "Entender", "Separar sintomas do problema e buscar evidências antes de definir uma solução."],
-              ["02", "Estruturar", "Transformar regras, dependências e restrições em uma experiência compreensível."],
-              ["03", "Acompanhar", "Entender o que acontece depois que a solução chega ao usuário."],
+              ["01", "Mapear a jornada", "Entender os estados do pedido, as regras da operação e os pontos em que o cliente perde contexto."],
+              ["02", "Definir a resposta", "Transformar cenários de pós-compra em estados, mensagens e próximos passos coerentes."],
+              ["03", "Validar a experiência", "Acompanhar como a solução funciona no produto e na operação depois de publicada."],
             ].map(([index, title, description]) => (
               <Reveal className="home-thinking__row" key={index}>
                 <span>{index}</span>

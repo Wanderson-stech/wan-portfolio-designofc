@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Reveal } from "@/components/reveal";
 import { PortfolioCarousel } from "@/components/carousel";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { contact } from "@/lib/site";
 
 export type Fact = { label: string; value: string };
@@ -18,6 +19,7 @@ export function PortfolioHeader({ casePage = false }: { casePage?: boolean }) {
         <Link href="/#projetos">Projetos</Link>
         <Link href="/#sobre">Sobre</Link>
         <Link href="/#contato">Contato</Link>
+        <ThemeToggle />
       </nav>
 
       <nav className="figma-nav-mobile mobile-only" aria-label="Navegação principal">
@@ -30,6 +32,7 @@ export function PortfolioHeader({ casePage = false }: { casePage?: boolean }) {
             <Link href="/#sobre">Sobre</Link>
           </>
         )}
+        <ThemeToggle />
       </nav>
     </header>
   );

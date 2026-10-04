@@ -17,6 +17,20 @@
   --content: 1280px;
 }
 
+html[data-theme="light"] {
+  --bg: #f7f7f5;
+  --bg-alt: #ececea;
+  --surface: #ffffff;
+  --surface-raised: #f0f0ee;
+  --border: #d5d5d0;
+  --text: #171717;
+  --muted: #555550;
+  --subtle: #73736d;
+  --accent: #4d58c9;
+  --accent-strong: #3944ad;
+  --positive: #168a50;
+}
+
 * { box-sizing: border-box; }
 
 html {
@@ -121,6 +135,26 @@ img { display: block; max-width: 100%; height: auto; }
 .home-contact__links a:hover,
 .figma-footer__links a:hover {
   color: var(--accent);
+}
+
+.theme-toggle {
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  display: inline-grid;
+  place-items: center;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  transition: border-color .2s ease, color .2s ease, background .2s ease;
+}
+
+.theme-toggle:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--surface);
 }
 
 /* ---------------- Buttons ---------------- */
@@ -1890,12 +1924,6 @@ img { display: block; max-width: 100%; height: auto; }
   line-height: 20px;
 }
 
-.results-final-rule {
-  height: 1px;
-  margin-top: 48px !important;
-  background: var(--border);
-}
-
 .results-final { max-width: 1120px; }
 
 /* ---------------- Next case ---------------- */
@@ -2009,6 +2037,7 @@ img { display: block; max-width: 100%; height: auto; }
 
   .figma-nav-mobile {
     display: flex !important;
+    align-items: center;
     gap: 7px;
     color: var(--subtle);
     font-size: 12px;
@@ -2522,6 +2551,12 @@ img { display: block; max-width: 100%; height: auto; }
     width: 300px;
   }
 
+  .figma-nav-mobile .theme-toggle {
+    width: 30px;
+    height: 30px;
+    margin-left: 8px;
+  }
+
   .reenvio-figma-artifact__media {
     width: 300px;
     height: var(--artifact-mobile-height);
@@ -2754,8 +2789,6 @@ img { display: block; max-width: 100%; height: auto; }
     font-size: 12px;
     line-height: 18px;
   }
-
-  .results-final-rule { margin-top: 28px !important; }
 
   .next-case {
     padding: 36px 24px 40px;

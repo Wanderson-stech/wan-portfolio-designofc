@@ -200,18 +200,18 @@ export function ResultsBars() {
       <article className="results-bar-chart">
         <div className="results-bar-chart__heading">
           <div><strong>SAC</strong><span>Média diária de reenvios</span></div>
-          <b>−35,6%</b>
+          <b>−37,1%</b>
         </div>
-        <div className="bar-row"><span>Antes</span><i style={{ width: "100%" }} /><strong>1.004</strong></div>
-        <div className="bar-row"><span>Depois</span><i style={{ width: "64.3%" }} /><strong>646</strong></div>
+        <div className="bar-row"><span>Antes</span><i style={{ width: "100%" }} /><strong>≈1.020</strong></div>
+        <div className="bar-row"><span>Depois</span><i style={{ width: "62.9%" }} /><strong>≈641</strong></div>
       </article>
       <article className="results-bar-chart">
         <div className="results-bar-chart__heading">
           <div><strong>Todos os canais</strong><span>Média diária de reenvios</span></div>
-          <b>−27,7%</b>
+          <b>−29,1%</b>
         </div>
-        <div className="bar-row"><span>Antes</span><i style={{ width: "100%" }} /><strong>2.476</strong></div>
-        <div className="bar-row"><span>Depois</span><i style={{ width: "72.3%" }} /><strong>1.789</strong></div>
+        <div className="bar-row"><span>Antes</span><i style={{ width: "100%" }} /><strong>≈2.500</strong></div>
+        <div className="bar-row"><span>Depois</span><i style={{ width: "70.9%" }} /><strong>≈1.773</strong></div>
       </article>
     </div>
   );
