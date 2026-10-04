@@ -8,13 +8,15 @@ export function PortfolioCarousel({
   label,
   className = "",
   slideClassName = "",
+  containScroll = "trimSnaps",
 }: {
   children: React.ReactNode[];
   label: string;
   className?: string;
   slideClassName?: string;
+  containScroll?: false | "trimSnaps" | "keepSnaps";
 }) {
-  const [viewportRef, api] = useEmblaCarousel({ align: "start", containScroll: "trimSnaps" });
+  const [viewportRef, api] = useEmblaCarousel({ align: "start", containScroll });
   const [index, setIndex] = useState(0);
 
   const onSelect = useCallback(() => {

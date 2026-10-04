@@ -6,21 +6,25 @@ import { PortfolioCarousel } from "@/components/carousel";
 const reenvioSolutionSlides = [
   {
     title: "Problema na entrega",
+    description: "O produto comunica que o pedido retornou para a farmácia.",
     desktop: { src: "/figma/reenvio-solution-desktop-1.png", width: 348, height: 760 },
     mobile: { src: "/figma/reenvio-solution-mobile-1.png", width: 300, height: 597 },
   },
   {
     title: "Pedido não entregue",
+    description: "Dentro do Tracking, o problema deixa de ser ambíguo e já apresenta uma próxima ação.",
     desktop: { src: "/figma/reenvio-solution-desktop-2.png", width: 360, height: 796 },
     mobile: { src: "/figma/reenvio-solution-mobile-2.png", width: 300, height: 625 },
   },
   {
     title: "Conferir endereço e confirmar reenvio",
+    description: "Antes de solicitar uma nova tentativa, o cliente confere o endereço de entrega e confirma o reenvio na mesma tela.",
     desktop: { src: "/figma/reenvio-solution-desktop-3.png", width: 348, height: 847 },
     mobile: { src: "/figma/reenvio-solution-mobile-3.png", width: 300, height: 623 },
   },
   {
     title: "Reenvio solicitado",
+    description: "O produto confirma que a solicitação foi recebida e informa que o status será atualizado.",
     desktop: { src: "/figma/reenvio-solution-desktop-4.png", width: 164, height: 792 },
     mobile: { src: "/figma/reenvio-solution-mobile-4.png", width: 300, height: 622 },
   },
@@ -50,6 +54,8 @@ function ReenvioFigmaSlide({ slide }: { slide: typeof reenvioSolutionSlides[numb
           />
         </picture>
       </div>
+      <h3>{slide.title}</h3>
+      <p>{slide.description}</p>
     </article>
   );
 }
@@ -60,6 +66,7 @@ export function ReenvioSolutionCarousel() {
       label="Sequência de telas da solução de reenvio"
       className="reenvio-native-carousel"
       slideClassName="reenvio-native-slide"
+      containScroll={false}
     >
       {reenvioSolutionSlides.map((slide) => (
         <ReenvioFigmaSlide slide={slide} key={slide.title} />
