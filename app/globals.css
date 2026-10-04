@@ -984,8 +984,14 @@ img { display: block; max-width: 100%; height: auto; }
   margin-top: 32px !important;
 }
 
+.reenvio-native-carousel .portfolio-carousel__track {
+  gap: 0;
+}
+
 .reenvio-native-slide {
-  flex: 0 0 auto;
+  flex: 0 0 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .journey-artifact {
@@ -2542,7 +2548,10 @@ img { display: block; max-width: 100%; height: auto; }
 
   /* Reenvio native mobile */
   .reenvio-native-carousel { margin-top: 28px !important; }
-  .reenvio-native-slide { flex-basis: 300px; }
+  .reenvio-native-slide {
+    flex-basis: 100%;
+    justify-content: flex-start;
+  }
   .reenvio-figma-artifact {
     width: 300px;
   }

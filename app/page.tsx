@@ -53,14 +53,14 @@ export default function Home() {
 
         <section className="home-thinking">
           <Reveal className="home-thinking__intro">
-            <h2>Trabalho em jornadas de pós-compra.</h2>
-            <p>Investigo como pedido, operação e comunicação se conectam para tornar cada etapa mais clara e acionável para o cliente.</p>
+            <h2>Um processo que se adapta ao problema.</h2>
+            <p>Cada iniciativa pede um recorte diferente. Combino discovery, dados e entendimento do contexto para definir o que precisa ser investigado, estruturado e validado.</p>
           </Reveal>
           <div className="home-thinking__rows">
             {[
-              ["01", "Mapear a jornada", "Entender os estados do pedido, as regras da operação e os pontos em que o cliente perde contexto."],
-              ["02", "Definir a resposta", "Transformar cenários de pós-compra em estados, mensagens e próximos passos coerentes."],
-              ["03", "Validar a experiência", "Acompanhar como a solução funciona no produto e na operação depois de publicada."],
+              ["01", "Investigar o contexto", "Uso dados, métricas, pesquisa, conversas com times e análise da jornada para entender problema, restrições e oportunidades."],
+              ["02", "Estruturar a solução", "Conecto necessidades do usuário, regras de negócio e viabilidade técnica em fluxos, estados, conteúdo e decisões de produto."],
+              ["03", "Validar e acompanhar", "Testo hipóteses, alinho com produto e tecnologia e acompanho sinais da experiência depois da entrega."],
             ].map(([index, title, description]) => (
               <Reveal className="home-thinking__row" key={index}>
                 <span>{index}</span>
