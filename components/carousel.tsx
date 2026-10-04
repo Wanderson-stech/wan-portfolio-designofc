@@ -10,6 +10,7 @@ export function PortfolioCarousel({
   slideClassName = "",
   containScroll = "trimSnaps",
   mobileContainScroll,
+  showCounter = true,
 }: {
   children: React.ReactNode[];
   label: string;
@@ -17,6 +18,7 @@ export function PortfolioCarousel({
   slideClassName?: string;
   containScroll?: false | "trimSnaps" | "keepSnaps";
   mobileContainScroll?: false | "trimSnaps" | "keepSnaps";
+  showCounter?: boolean;
 }) {
   const [viewportRef, api] = useEmblaCarousel({
     align: "start",
@@ -50,9 +52,11 @@ export function PortfolioCarousel({
   return (
     <div className={"portfolio-carousel " + className} aria-label={label}>
       <div className="portfolio-carousel__controls">
-        <span className="portfolio-carousel__counter">
-          {String(index + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
-        </span>
+        {showCounter ? (
+          <span className="portfolio-carousel__counter">
+            {String(index + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
+          </span>
+        ) : null}
         <div className="portfolio-carousel__actions">
           <button type="button" onClick={previous} aria-label="Item anterior">←</button>
           <button type="button" onClick={next} aria-label="Próximo item">→</button>

@@ -1025,13 +1025,6 @@ img { display: block; max-width: 100%; height: auto; }
   width: 348px;
 }
 
-.journey-artifact__number {
-  margin: 0 0 16px;
-  color: var(--subtle);
-  font-size: 13px;
-  line-height: 20px;
-}
-
 .journey-artifact__stage,
 .recovery-home {
   width: 348px;

@@ -30,7 +30,7 @@ const reenvioSolutionSlides = [
   },
 ] as const;
 
-function ReenvioFigmaSlide({ slide, index }: { slide: typeof reenvioSolutionSlides[number]; index: number }) {
+function ReenvioFigmaSlide({ slide }: { slide: typeof reenvioSolutionSlides[number] }) {
   return (
     <article
       className="reenvio-figma-artifact"
@@ -42,7 +42,6 @@ function ReenvioFigmaSlide({ slide, index }: { slide: typeof reenvioSolutionSlid
         "--artifact-mobile-height": `${slide.mobile.height}px`,
       } as CSSProperties}
     >
-      <p className="journey-artifact__number">{String(index + 1).padStart(2, "0")}</p>
       <div className="reenvio-figma-artifact__media">
         <picture>
           <source media="(max-width: 767px)" srcSet={slide.mobile.src} />
@@ -70,9 +69,10 @@ export function ReenvioSolutionCarousel() {
       slideClassName="reenvio-native-slide"
       containScroll={false}
       mobileContainScroll="trimSnaps"
+      showCounter={false}
     >
-      {reenvioSolutionSlides.map((slide, index) => (
-        <ReenvioFigmaSlide slide={slide} index={index} key={slide.title} />
+      {reenvioSolutionSlides.map((slide) => (
+        <ReenvioFigmaSlide slide={slide} key={slide.title} />
       ))}
     </PortfolioCarousel>
   );
