@@ -98,7 +98,7 @@ export default function Home() {
           </Reveal>
         </section>
       </main>
-      <GlobalFooter />
+      <GlobalFooter hideLinks />
     </>
   );
 }

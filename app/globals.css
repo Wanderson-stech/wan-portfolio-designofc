@@ -2809,6 +2809,8 @@ img { display: block; max-width: 100%; height: auto; }
 
 .ruptura-figma-artifact {
   width: 100%;
+  max-width: 1360px;
+  margin-inline: auto;
 }
 
 .ruptura-figma-artifact picture,
@@ -2820,6 +2822,11 @@ img { display: block; max-width: 100%; height: auto; }
 .ruptura-figma-artifact img {
   height: auto;
   object-fit: contain;
+}
+
+.ruptura-module--multichannel .ruptura-figma-artifact img {
+  width: min(1360px, 100%);
+  margin-inline: auto;
 }
 
 .ruptura-native {

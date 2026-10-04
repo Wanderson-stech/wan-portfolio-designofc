@@ -35,7 +35,7 @@ export function PortfolioHeader({ casePage = false }: { casePage?: boolean }) {
   );
 }
 
-export function GlobalFooter() {
+export function GlobalFooter({ hideLinks = false }: { hideLinks?: boolean }) {
   return (
     <footer className="figma-footer">
       <div className="figma-footer__rule" />
@@ -44,11 +44,13 @@ export function GlobalFooter() {
           <strong>Wanderson Silva (Wan)</strong>
           <span>Product Designer</span>
         </div>
-        <div className="figma-footer__links">
-          <a href={contact.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a>
-          <a href={contact.whatsapp} target="_blank" rel="noreferrer">WhatsApp ↗</a>
-          <a href={contact.email}>E-mail ↗</a>
-        </div>
+        {!hideLinks ? (
+          <div className="figma-footer__links">
+            <a href={contact.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a>
+            <a href={contact.whatsapp} target="_blank" rel="noreferrer">WhatsApp ↗</a>
+            <a href={contact.email}>E-mail ↗</a>
+          </div>
+        ) : <div aria-hidden="true" />}
         <div className="figma-footer__meta">
           <span>São Paulo, Brasil</span>
           <span>2026</span>
