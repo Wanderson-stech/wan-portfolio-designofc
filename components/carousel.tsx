@@ -9,14 +9,22 @@ export function PortfolioCarousel({
   className = "",
   slideClassName = "",
   containScroll = "trimSnaps",
+  mobileContainScroll,
 }: {
   children: React.ReactNode[];
   label: string;
   className?: string;
   slideClassName?: string;
   containScroll?: false | "trimSnaps" | "keepSnaps";
+  mobileContainScroll?: false | "trimSnaps" | "keepSnaps";
 }) {
-  const [viewportRef, api] = useEmblaCarousel({ align: "start", containScroll });
+  const [viewportRef, api] = useEmblaCarousel({
+    align: "start",
+    containScroll,
+    ...(mobileContainScroll
+      ? { breakpoints: { "(max-width: 767px)": { containScroll: mobileContainScroll } } }
+      : {}),
+  });
   const [index, setIndex] = useState(0);
 
   const onSelect = useCallback(() => {

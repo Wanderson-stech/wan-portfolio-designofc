@@ -7,26 +7,26 @@ const reenvioSolutionSlides = [
   {
     title: "Problema na entrega",
     description: "O produto comunica que o pedido retornou para a farmácia.",
-    desktop: { src: "/figma/reenvio-solution-cropped-desktop-1.png", width: 348, height: 606 },
+    desktop: { src: "/figma/reenvio-solution-figma-desktop-1.png", width: 348, height: 606 },
     mobile: { src: "/figma/reenvio-solution-cropped-mobile-1.png", width: 300, height: 477 },
   },
   {
     title: "Pedido não entregue",
     description: "Dentro do Tracking, o problema deixa de ser ambíguo e já apresenta uma próxima ação.",
-    desktop: { src: "/figma/reenvio-solution-cropped-desktop-2.png", width: 360, height: 606 },
+    desktop: { src: "/figma/reenvio-solution-figma-desktop-2.png", width: 360, height: 606 },
     mobile: { src: "/figma/reenvio-solution-cropped-mobile-2.png", width: 382, height: 607 },
   },
   {
     title: "Conferir endereço e confirmar reenvio",
     description: "Antes de solicitar uma nova tentativa, o cliente confere o endereço de entrega e confirma o reenvio na mesma tela.",
-    desktop: { src: "/figma/reenvio-solution-cropped-desktop-3.png", width: 348, height: 607 },
+    desktop: { src: "/figma/reenvio-solution-figma-desktop-3.png", width: 348, height: 607 },
     mobile: { src: "/figma/reenvio-solution-cropped-mobile-3.png", width: 382, height: 608 },
   },
   {
     title: "Reenvio solicitado",
     description: "O produto confirma que a solicitação foi recebida e informa que o status será atualizado.",
-    desktop: { src: "/figma/reenvio-solution-cropped-desktop-4.png", width: 164, height: 612 },
-    mobile: { src: "/figma/reenvio-solution-cropped-mobile-4.png", width: 142, height: 613 },
+    desktop: { src: "/figma/reenvio-solution-figma-desktop-4.png", width: 348, height: 612 },
+    mobile: { src: "/figma/reenvio-solution-figma-desktop-4.png", width: 348, height: 612 },
   },
 ] as const;
 
@@ -69,6 +69,7 @@ export function ReenvioSolutionCarousel() {
       className="reenvio-native-carousel"
       slideClassName="reenvio-native-slide"
       containScroll={false}
+      mobileContainScroll="trimSnaps"
     >
       {reenvioSolutionSlides.map((slide, index) => (
         <ReenvioFigmaSlide slide={slide} index={index} key={slide.title} />
