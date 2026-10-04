@@ -1006,11 +1006,10 @@ img { display: block; max-width: 100%; height: auto; }
   padding-bottom: 24px;
 }
 
-.reenvio-solution { position: relative; }
-
 .reenvio-solution > h2 { margin-top: 48px; }
 
 .reenvio-native-carousel {
+  position: relative;
   margin-top: 32px !important;
 }
 
