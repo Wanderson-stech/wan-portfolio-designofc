@@ -153,7 +153,7 @@ export default function RupturaPage() {
 
           <div className="ruptura-solution__modules">
             {solutionModules.map((module) => (
-              <article className={"ruptura-module ruptura-module--" + module.layout} key={module.kicker}>
+              <article className="ruptura-module ruptura-module--native" key={module.kicker}>
                 <div className="ruptura-module__rule" />
                 <div className="ruptura-module__copy">
                   <div className="ruptura-module__meta"><span>{module.number}</span><span>{module.kicker}</span></div>
