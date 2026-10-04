@@ -50,7 +50,7 @@ function ReenvioFigmaSlide({ slide }: { slide: typeof reenvioSolutionSlides[numb
             alt=""
             width={slide.desktop.width}
             height={slide.desktop.height}
-            loading="lazy"
+            loading="eager"
             decoding="async"
           />
         </picture>

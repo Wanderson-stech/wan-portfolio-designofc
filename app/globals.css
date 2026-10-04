@@ -976,7 +976,7 @@ img { display: block; max-width: 100%; height: auto; }
 
 .reenvio-solution {
   background: var(--bg);
-  padding-bottom: 40px;
+  padding-bottom: 24px;
 }
 
 .reenvio-solution > h2 { margin-top: 24px; }
