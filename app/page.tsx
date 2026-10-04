@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { GlobalFooter, PortfolioHeader, ProjectCard } from "@/components/portfolio";
 import { Reveal } from "@/components/reveal";
 import { contact } from "@/lib/site";
@@ -80,8 +79,10 @@ export default function Home() {
               <p>Também sou formado em Análise e Desenvolvimento de Sistemas, o que contribui para minha relação com tecnologia e para entender melhor as restrições das soluções que desenho.</p>
             </Reveal>
             <div className="home-about__photo">
-              <Image className="desktop-only" src="/figma/home-profile-desktop.png" alt="Foto de Wanderson Silva" width={279} height={283} sizes="279px" />
-              <Image className="mobile-only" src="/figma/home-profile-mobile.png" alt="Foto de Wanderson Silva" width={342} height={346} sizes="342px" />
+              <picture>
+                <source media="(max-width: 767px)" srcSet="/figma/home-profile-mobile.png" />
+                <img src="/figma/home-profile-desktop.png" alt="Foto de Wanderson Silva" width={279} height={283} loading="lazy" decoding="async" />
+              </picture>
             </div>
           </div>
         </section>
