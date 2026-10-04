@@ -1,0 +1,166 @@
+name: Visual Audit
+
+on:
+  push:
+    branches: [dev]
+  workflow_dispatch:
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install app
+        run: npm install
+
+      - name: Install Playwright
+        run: |
+          npm install --no-save playwright@1.55.0
+          npx playwright install --with-deps chromium
+
+      - name: Build
+        run: npm run build
+
+      - name: Start app
+        run: |
+          npm start > /tmp/portfolio-server.log 2>&1 &
+          echo $! > /tmp/portfolio-server.pid
+          for i in {1..30}; do
+            if curl -fsS http://127.0.0.1:3000 >/dev/null; then
+              exit 0
+            fi
+            sleep 1
+          done
+          cat /tmp/portfolio-server.log
+          exit 1
+
+      - name: Capture pages and browser diagnostics
+        run: |
+          mkdir -p audit-output
+          cat > /tmp/audit.cjs <<'NODE'
+          const { chromium } = require("playwright");
+          const fs = require("fs");
+          const path = require("path");
+
+          const pages = [
+            { name: "home", url: "/" },
+            { name: "reenvio", url: "/reenvio" },
+            { name: "ruptura", url: "/ruptura" },
+          ];
+          const viewports = [
+            { name: "desktop", width: 1440, height: 900 },
+            { name: "mobile", width: 390, height: 844 },
+          ];
+
+          (async () => {
+            const browser = await chromium.launch({ headless: true });
+            const report = [];
+
+            for (const viewport of viewports) {
+              const context = await browser.newContext({
+                viewport: { width: viewport.width, height: viewport.height },
+                deviceScaleFactor: 1,
+              });
+
+              for (const pageDef of pages) {
+                const p = await context.newPage();
+                const consoleErrors = [];
+                const pageErrors = [];
+                const failedRequests = [];
+
+                p.on("console", (msg) => {
+                  if (msg.type() === "error") consoleErrors.push(msg.text());
+                });
+                p.on("pageerror", (err) => pageErrors.push(String(err)));
+                p.on("requestfailed", (req) => {
+                  failedRequests.push({
+                    url: req.url(),
+                    error: req.failure()?.errorText || "unknown",
+                  });
+                });
+
+                const response = await p.goto("http://127.0.0.1:3000" + pageDef.url, {
+                  waitUntil: "networkidle",
+                  timeout: 30000,
+                });
+
+                await p.screenshot({
+                  path: path.join("audit-output", `${pageDef.name}-${viewport.name}.png`),
+                  fullPage: true,
+                });
+
+                const doc = await p.evaluate(() => {
+                  const body = document.body;
+                  const root = document.documentElement;
+                  const overflow = [];
+                  document.querySelectorAll("*").forEach((el) => {
+                    const r = el.getBoundingClientRect();
+                    if (r.right > window.innerWidth + 2 || r.left < -2) {
+                      const style = getComputedStyle(el);
+                      if (style.position !== "fixed") {
+                        overflow.push({
+                          tag: el.tagName,
+                          className: el.className,
+                          left: Math.round(r.left),
+                          right: Math.round(r.right),
+                          width: Math.round(r.width),
+                        });
+                      }
+                    }
+                  });
+                  return {
+                    title: document.title,
+                    h1: document.querySelector("h1")?.textContent?.trim() || null,
+                    scrollWidth: root.scrollWidth,
+                    clientWidth: root.clientWidth,
+                    bodyHeight: Math.round(body.getBoundingClientRect().height),
+                    imageCount: document.images.length,
+                    brokenImages: [...document.images]
+                      .filter((img) => !img.complete || img.naturalWidth === 0)
+                      .map((img) => img.currentSrc || img.src),
+                    overflow: overflow.slice(0, 50),
+                    links: [...document.querySelectorAll("a")].map((a) => ({
+                      text: a.textContent?.trim() || "",
+                      href: a.href,
+                    })),
+                  };
+                });
+
+                report.push({
+                  page: pageDef.name,
+                  viewport,
+                  status: response?.status() ?? null,
+                  consoleErrors,
+                  pageErrors,
+                  failedRequests,
+                  ...doc,
+                });
+                await p.close();
+              }
+              await context.close();
+            }
+
+            await browser.close();
+            fs.writeFileSync("audit-output/report.json", JSON.stringify(report, null, 2));
+          })().catch((error) => {
+            console.error(error);
+            process.exit(1);
+          });
+          NODE
+          node /tmp/audit.cjs
+
+      - name: Upload audit artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: visual-audit
+          path: audit-output
+          if-no-files-found: error
+          retention-days: 3
