@@ -130,10 +130,6 @@ export function CaseHero({
   return (
     <section className="case-hero">
       <div className="case-hero__inner">
-        <Link href="/#projetos" className="case-back">
-          ← Voltar para projetos
-        </Link>
-
         <div className="case-hero__composition">
           <Reveal className="case-hero__copy">
             <p className="case-legend">RD Saúde · Pós-compra · Tracking</p>

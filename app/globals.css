@@ -871,6 +871,12 @@ img { display: block; max-width: 100%; height: auto; }
   border-bottom: 1px solid var(--border);
 }
 
+.decision-row:last-child,
+.mvp-stack > :last-child,
+.structure-stack > :last-child {
+  border-bottom: 0;
+}
+
 .decision-row h3 {
   margin: 0 0 16px;
   font-size: 24px;
