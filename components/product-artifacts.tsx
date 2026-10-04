@@ -1,168 +1,61 @@
 "use client";
 
+import type { CSSProperties } from "react";
 import { PortfolioCarousel } from "@/components/carousel";
 
-function PhoneFrame({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="product-phone">
-      <div className="product-phone__status">
-        <span>9:41</span>
-        <span>● ● ●</span>
-      </div>
-      {children}
-    </div>
-  );
-}
+const reenvioSolutionSlides = [
+  {
+    title: "Problema na entrega",
+    description: "O produto comunica que o pedido retornou para a farmácia.",
+    desktop: { src: "/figma/reenvio-solution-desktop-1.png", width: 348, height: 760 },
+    mobile: { src: "/figma/reenvio-solution-mobile-1.png", width: 300, height: 597 },
+  },
+  {
+    title: "Pedido não entregue",
+    description: "Dentro do Tracking, o problema deixa de ser ambíguo e já apresenta uma próxima ação.",
+    desktop: { src: "/figma/reenvio-solution-desktop-2.png", width: 360, height: 796 },
+    mobile: { src: "/figma/reenvio-solution-mobile-2.png", width: 300, height: 625 },
+  },
+  {
+    title: "Conferir endereço e confirmar reenvio",
+    description: "Antes de solicitar uma nova tentativa, o cliente confere o endereço de entrega e confirma o reenvio na mesma tela.",
+    desktop: { src: "/figma/reenvio-solution-desktop-3.png", width: 348, height: 847 },
+    mobile: { src: "/figma/reenvio-solution-mobile-3.png", width: 300, height: 623 },
+  },
+  {
+    title: "Reenvio solicitado",
+    description: "O produto confirma que a solicitação foi recebida e informa que o status será atualizado.",
+    desktop: { src: "/figma/reenvio-solution-desktop-4.png", width: 164, height: 792 },
+    mobile: { src: "/figma/reenvio-solution-mobile-4.png", width: 300, height: 622 },
+  },
+] as const;
 
-function OrderProducts() {
+function ReenvioFigmaSlide({ slide, index }: { slide: typeof reenvioSolutionSlides[number]; index: number }) {
   return (
-    <div className="product-box">
-      <div className="product-box__row">
-        <strong>Produtos</strong>
-        <span>Exibir detalhes⌄</span>
+    <article
+      className="reenvio-figma-artifact"
+      style={{
+        "--artifact-width": `${slide.desktop.width}px`,
+        "--artifact-height": `${slide.desktop.height}px`,
+        "--artifact-mobile-height": `${slide.mobile.height}px`,
+      } as CSSProperties}
+    >
+      <p className="journey-artifact__number">{String(index + 1).padStart(2, "0")}</p>
+      <div className="reenvio-figma-artifact__media">
+        <picture>
+          <source media="(max-width: 767px)" srcSet={slide.mobile.src} />
+          <img
+            src={slide.desktop.src}
+            alt=""
+            width={slide.desktop.width}
+            height={slide.desktop.height}
+            loading="lazy"
+            decoding="async"
+          />
+        </picture>
       </div>
-      <div className="product-thumbs">
-        <span className="product-thumb product-thumb--purple">1x</span>
-        <span className="product-thumb product-thumb--yellow">1x</span>
-      </div>
-      <small>Vendido e entregue por Drogasil</small>
-    </div>
-  );
-}
-
-function TrackingHeader() {
-  return (
-    <div className="product-phone__nav">
-      <span>‹</span>
-      <strong>Detalhes do pedido</strong>
-      <span>Ajuda</span>
-    </div>
-  );
-}
-
-function ReenvioSlideOne() {
-  return (
-    <article className="journey-artifact">
-      <p className="journey-artifact__number">01</p>
-      <div className="recovery-home">
-        <div className="recovery-home__push">
-          <span className="mini-label">PUSH</span>
-          <div className="os-notification">
-            <strong>Problema na entrega</strong>
-            <p>Seu pedido retornou para a farmácia. Mais detalhes no app ou site.</p>
-            <span>há 34m</span>
-          </div>
-        </div>
-        <div className="recovery-home__phone">
-          <PhoneFrame>
-            <div className="fake-search">Buscar na Drogasil</div>
-            <div className="fake-home-card">
-              <span className="status-dot status-dot--pink" />
-              <div>
-                <strong>Problema na entrega</strong>
-                <p>Seu pedido retornou para a farmácia.</p>
-              </div>
-            </div>
-            <div className="fake-home-grid">
-              <span>Ofertas exclusivas</span><span>Meus pedidos</span>
-              <span>Saúde</span><span>Mais vendidos</span>
-            </div>
-            <div className="fake-banner">Cuide do seu tratamento e pague do seu jeito</div>
-          </PhoneFrame>
-        </div>
-        <div className="recovery-home__live">
-          <span className="mini-label">LIVE IOS</span>
-          <div className="live-activity live-activity--small">
-            <div className="live-brand"><strong>DROGASIL</strong><span>Chega até 13:10</span></div>
-            <div className="live-alert">Problema na entrega</div>
-            <strong>Seu pedido retornou para a farmácia.</strong>
-          </div>
-        </div>
-      </div>
-      <h3>PROBLEMA NA ENTREGA</h3>
-      <p>O produto comunica que o pedido retornou para a farmácia.</p>
-    </article>
-  );
-}
-
-function ReenvioSlideTwo() {
-  return (
-    <article className="journey-artifact">
-      <p className="journey-artifact__number">02</p>
-      <div className="journey-artifact__stage">
-        <PhoneFrame>
-          <TrackingHeader />
-          <div className="tracking-alert">
-            <strong>Não conseguimos entregar seu pedido</strong>
-            <div className="tracking-state"><span className="status-dot status-dot--pink" />Pedido não entregue</div>
-            <p>Confira seu endereço para uma nova tentativa de entrega.</p>
-            <button>Conferir endereço</button>
-          </div>
-          <div className="product-box">
-            <strong>Endereço de entrega</strong>
-            <p><b>Roberto dos Santos Almeida</b><br />Rua Dr. Cardoso de Melo, 1524<br />Itaim Bibi - São Paulo, SP</p>
-          </div>
-          <OrderProducts />
-          <div className="product-summary">
-            <strong>Resumo de valores</strong><span>R$ 117,02</span>
-          </div>
-        </PhoneFrame>
-      </div>
-      <h3>PEDIDO NÃO ENTREGUE</h3>
-      <p>Dentro do Tracking, o problema deixa de ser ambíguo e já apresenta uma próxima ação.</p>
-    </article>
-  );
-}
-
-function ReenvioSlideThree() {
-  return (
-    <article className="journey-artifact">
-      <p className="journey-artifact__number">03</p>
-      <div className="journey-artifact__stage">
-        <PhoneFrame>
-          <div className="product-phone__nav"><span>‹</span><strong>Endereço de entrega</strong><span /></div>
-          <div className="address-check">
-            <strong>Confira antes do reenvio</strong>
-            <p>Este endereço será usado para a nova tentativa de entrega do seu pedido.</p>
-          </div>
-          <div className="address-card">
-            <span>Endereço de entrega</span>
-            <strong>Avenida Corifeu de Azevedo Marques, 3097</strong>
-            <p>Vila Lageado, 05339-000<br />São Paulo - SP<br />Complemento...</p>
-          </div>
-          <div className="info-card">ⓘ Se preferir receber em outro endereço, você pode cancelar este pedido. O valor será estornado, e você pode fazer um novo.</div>
-          <button className="phone-primary">Confirmar reenvio</button>
-          <button className="phone-link">Cancelar pedido</button>
-        </PhoneFrame>
-      </div>
-      <h3>CONFERIR ENDEREÇO E CONFIRMAR REENVIO</h3>
-      <p>Antes de solicitar uma nova tentativa, o cliente confere o endereço de entrega e confirma o reenvio na mesma tela.</p>
-    </article>
-  );
-}
-
-function ReenvioSlideFour() {
-  return (
-    <article className="journey-artifact">
-      <p className="journey-artifact__number">04</p>
-      <div className="journey-artifact__stage">
-        <PhoneFrame>
-          <TrackingHeader />
-          <div className="tracking-alert">
-            <strong>Não conseguimos entregar seu pedido</strong>
-            <div className="tracking-state"><span className="status-dot status-dot--pink" />Pedido não entregue</div>
-            <p>O reenvio do pedido foi solicitado. Em breve, o status será atualizado.</p>
-          </div>
-          <div className="success-strip">✓ Endereço confirmado. Nova tentativa de entrega solicitada.</div>
-          <div className="product-box">
-            <strong>Endereço de entrega</strong>
-            <p><b>Roberto dos Santos Almeida</b><br />Rua Dr. Cardoso de Melo, 1524<br />Itaim Bibi - São Paulo, SP</p>
-          </div>
-          <OrderProducts />
-        </PhoneFrame>
-      </div>
-      <h3>REENVIO SOLICITADO</h3>
-      <p>O produto confirma que a solicitação foi recebida e informa que o status será atualizado.</p>
+      <h3>{slide.title}</h3>
+      <p>{slide.description}</p>
     </article>
   );
 }
@@ -174,7 +67,9 @@ export function ReenvioSolutionCarousel() {
       className="reenvio-native-carousel"
       slideClassName="reenvio-native-slide"
     >
-      {[<ReenvioSlideOne key="1" />, <ReenvioSlideTwo key="2" />, <ReenvioSlideThree key="3" />, <ReenvioSlideFour key="4" />]}
+      {reenvioSolutionSlides.map((slide, index) => (
+        <ReenvioFigmaSlide slide={slide} index={index} key={slide.title} />
+      ))}
     </PortfolioCarousel>
   );
 }
